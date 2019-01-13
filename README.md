@@ -4,7 +4,7 @@ This arduino code takes the rotation of the rotary encoder output and turns them
 
 This makes the data coming from the endocer is to consum by any apps at it is just a mouse input
 
-**IMPORTANT: this project only works with microcontroller supporting the Arduino Mouse library like Leonardo**
+**IMPORTANT: this project only works with microcontrollers supporting the Arduino Mouse library like Leonardo**
 
 ## Equipment
 

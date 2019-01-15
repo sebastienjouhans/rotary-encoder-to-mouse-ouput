@@ -4,6 +4,8 @@ This arduino code takes the rotation of the rotary encoder output and turns them
 
 This makes the data coming from the endocer is to consum by any apps at it is just a mouse input
 
+**IMPORTANT: this project only works with microcontrollers supporting the Arduino Mouse library like Leonardo**
+
 ## Equipment
 
 |Component|Cost|Description|Link|
@@ -11,6 +13,8 @@ This makes the data coming from the endocer is to consum by any apps at it is ju
 | Arduino Leonardo | £ 15  | Micro controller |[RS](https://uk.rs-online.com/web/p/processor-microcontroller-development-kits/7617324/) |
 | Bourns Rotary Encoder w/ push button | £13  | part: EM14R0D-R20-L032S |[RS](https://uk.rs-online.com/web/p/rotary-encoders/8274997/) |
 | Bourns cable with connector | £5  | part: H-290-4 |[Mouser](https://www.mouser.co.uk/ProductDetail/Bourns/H-290-4?qs=oa0Mu2YftbVpRz7K7Ip3%2FA%3D%3D) |
+
+Rotary encoder datasheet: https://docs-emea.rs-online.com/webdocs/1364/0900766b81364719.pdf
 
 ## Wiring
 

@@ -14,6 +14,10 @@ float encoderTick = 0;
 volatile unsigned int currentEncoder0Pos = 0;
 volatile unsigned int previouscurrentEncoder0Pos = 0;
 
+long wheelValue = 0;
+
+bool isWheelValuePositive = true;
+
 void setup() {
   pinMode(encoder0PinA, INPUT);
   pinMode(encoder0PinB, INPUT);
@@ -38,27 +42,46 @@ void loop() {
   
 }
 
-void updateEncoderTick() {
-  if (currentEncoder0Pos < 0) {
-    scrub = 1 + (float(currentEncoder0Pos % maxEncoderValue) / float (maxEncoderValue)) ;
-  }
-  else {
-    scrub = float(currentEncoder0Pos % maxEncoderValue) / float (maxEncoderValue);
-  }
-  encoderTick = int((maxEncoderValue * scrub));
-  
-  Serial.println (scrub);
-  Serial.println (encoderTick);
-  Serial.println ("---");
-}
+//void updateEncoderTick() {
+//  if (currentEncoder0Pos < 0) {
+//    scrub = 1 + (float(currentEncoder0Pos % maxEncoderValue) / float (maxEncoderValue)) ;
+//  }
+//  else {
+//    scrub = float(currentEncoder0Pos % maxEncoderValue) / float (maxEncoderValue);
+//  }
+//  encoderTick = int((maxEncoderValue * scrub));
+//  
+//  Serial.println (scrub);
+//  Serial.println (encoderTick);
+//  Serial.println ("---");
+//}
 
 void updateMouseWheel()
 {
   if(previouscurrentEncoder0Pos != currentEncoder0Pos)
   {
+    if(currentEncoder0Pos > previouscurrentEncoder0Pos)
+    {
+      if(!isWheelValuePositive)
+      {
+        wheelValue = 0;
+        isWheelValuePositive = true;
+      }
+      wheelValue++; 
+    }
+    else
+    {
+      if(isWheelValuePositive)
+      {
+        wheelValue = 0;
+        isWheelValuePositive = false;
+      }
+      wheelValue--;
+    }
+    
     previouscurrentEncoder0Pos = currentEncoder0Pos;
-    //updateEncoderTick();
-    Mouse.move(0,0,currentEncoder0Pos);
+  Serial.println (wheelValue);
+    Mouse.move(0,0,wheelValue);
   }
 }
 
@@ -100,7 +123,6 @@ void doEncoderA() {
       currentEncoder0Pos = currentEncoder0Pos - 1;          // CCW
     }
   }
-  Serial.println (currentEncoder0Pos, DEC);
   // use for debugging - remember to comment out
 }
 
